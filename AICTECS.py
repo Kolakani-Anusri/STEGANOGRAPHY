@@ -16,7 +16,7 @@ def text_to_image(message, output_path, width=400, height=400):
         for pixel in row:
             for channel in range(3):  # BGR channels
                 if data_index < len(binary_message):
-                    pixel[channel] = (pixel[channel] & ~1) | int(binary_message[data_index])
+                    pixel[channel] = np.uint8((pixel[channel] & 254) | int(binary_message[data_index]))
                     data_index += 1
                 else:
                     break
